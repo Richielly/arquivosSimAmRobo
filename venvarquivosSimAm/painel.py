@@ -33,4 +33,4 @@ if st.sidebar.checkbox("Arquivos Por Exerício/Competência"):
                         st.sidebar.error('Erro no exercício: ' + dado[linha][0] + ' competênca: ' + dado[linha][1])
             if (dado[linha][0] == str(exercicio)):
                 st.text(str(dado[linha][2]).replace(',','\n'))
-                st.success(str(len(dado[linha][2])) + ' arquivos. ')
+                st.success(str(len(dado[linha][2])) + ' arquivo(s). ')
