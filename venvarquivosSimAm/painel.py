@@ -1,11 +1,13 @@
+import os
 import streamlit as st
 # from arquivo import Arquivo
 # from pacote import Pacote
 
-# ler = Arquivo()
+#ler = Arquivo()
 # competencias = Arquivo()
 if st.sidebar.checkbox("Arquivos SimAm Detalhe"):
-    st.table(ler.varrerDiretorios())
+    #st.table(ler.varrerDiretorios())
+    st.write(os.getcwd())
 
 if st.sidebar.checkbox("Arquivos Por Módulo"):
     exercicio = st.selectbox('Exercício', [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021])
