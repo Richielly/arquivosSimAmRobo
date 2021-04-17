@@ -2,8 +2,8 @@ import streamlit as st
 # from arquivo import Arquivo
 # from pacote import Pacote
 
-ler = Arquivo()
-competencias = Arquivo()
+# ler = Arquivo()
+# competencias = Arquivo()
 if st.sidebar.checkbox("Arquivos SimAm Detalhe"):
     st.table(ler.varrerDiretorios())
 
