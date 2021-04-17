@@ -1,6 +1,6 @@
 import streamlit as st
-from arquivo import Arquivo
-from pacote import Pacote
+# from arquivo import Arquivo
+# from pacote import Pacote
 
 ler = Arquivo()
 competencias = Arquivo()
