@@ -7,7 +7,14 @@ import streamlit as st
 # competencias = Arquivo()
 if st.sidebar.checkbox("Arquivos SimAm Detalhe"):
     #st.table(ler.varrerDiretorios())
-    st.write(os.getcwd())
+    st.write(os.listdir(os.getcwd()))
+
+    if not os.path.exists(os.getcwd() + '/RepositorioArquivosSimAm'):
+        st.write(os.getcwd())
+        local = os.mkdir('RepositorioArquivosSimAm')
+        st.write(os.listdir)
+
+
 
 if st.sidebar.checkbox("Arquivos Por Módulo"):
     exercicio = st.selectbox('Exercício', [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021])
