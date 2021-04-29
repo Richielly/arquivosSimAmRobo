@@ -99,7 +99,7 @@ class Consulta:
         #senha = "almir1"
         #usuario = "00029032962"  #Guamiranga
         #senha = "M339cont"
-        #usuario = "89997425987" #Capitão Leonidas
+        #usuario = "89997425987" #Municipio Capitão Leonidas / Municipio Santa Lucia
         #senha = "461928"
 
         usuario = "70954755987" #Terra Rica Samae
