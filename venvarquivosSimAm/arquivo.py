@@ -4,6 +4,7 @@ import shutil
 
 caminho_origem = 'C:\\Users\\richielly.carvalho\\Downloads\\'
 caminho_destino = 'C:\\Users\\richielly.carvalho\\Downloads\\SimAm\\'
+#caminho_destino = os.getcwd() + '/RepositorioArquivosSimAm'
 class Arquivo:
     def renomear_arquivo(competencia,exercicio):
         os.chdir(caminho_origem)

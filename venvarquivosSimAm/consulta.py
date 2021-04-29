@@ -107,7 +107,7 @@ class Consulta:
 
         #exercicios = [2013,2014,2015,2016,2017,2018,2019,2020,2021]
 
-        exercicios = [2015]
+        exercicios = [2021]
 
 
         competencias = ['Abertura de Exercício','Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto',

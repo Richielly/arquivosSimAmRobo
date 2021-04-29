@@ -1,20 +1,25 @@
 import os
+import shutil
 import streamlit as st
-# from arquivo import Arquivo
+from arquivo import Arquivo
 # from pacote import Pacote
 
-#ler = Arquivo()
-# competencias = Arquivo()
+if not os.path.exists(os.getcwd() + '/RepositorioArquivosSimAm'):
+    os.mkdir('RepositorioArquivosSimAm')
+
+# os.chdir(os.getcwd() + '/RepositorioArquivosSimAm')
+st.info(os.getcwd())
+arquivosZip = st.file_uploader('Escolha o arquivo', type="zip")
+st.info(os.getcwd())
+# shutil.move(arquivosZip, os.getcwd() + '/RepositorioArquivosSimAm')
+# shutil.move(arquivosZip, os.getcwd() + '/RepositorioArquivosSimAm','2014TerraRica.zip')
+ler = Arquivo()
+competencias = Arquivo()
 if st.sidebar.checkbox("Arquivos SimAm Detalhe"):
-    #st.table(ler.varrerDiretorios())
-    st.write(os.listdir(os.getcwd()))
+    st.table(ler.varrerDiretorios())
 
     if not os.path.exists(os.getcwd() + '/RepositorioArquivosSimAm'):
-        st.write(os.getcwd())
-        local = os.mkdir('RepositorioArquivosSimAm')
-        st.write(os.listdir)
-
-
+        os.mkdir('RepositorioArquivosSimAm')
 
 if st.sidebar.checkbox("Arquivos Por Módulo"):
     exercicio = st.selectbox('Exercício', [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021])
@@ -25,21 +30,23 @@ if st.sidebar.checkbox("Arquivos Por Módulo"):
     filtro = ler.varrerDiretoriosFiltro(exercicio, competencia, "Contabil")
     st.markdown(str(filtro).replace(',', '\n'))
 
+
 if st.sidebar.checkbox("Arquivos Por Exerício/Competência"):
     exercicio = st.selectbox('Exercício',[2013,2014,2015,2016,2017,2018,2019,2020,2021])
     competencia = st.selectbox('Competência', competencias.contar_competencias(exercicio))
-    st.header('Exercício: '+ str(exercicio))
-    linhas = len(ler.varrerDiretorios())
-    dado = ler.varrerDiretorios()
-    for linha in range(linhas):
-        if (dado[linha][0] == str(exercicio)):
-            st.subheader('Competência: ' + dado[linha][1] + ' Pasta: ' + dado[linha][3])
-            valEx, valCom = Arquivo.validarArquivoTexto(dado[linha][0], dado[linha][1])
-            if(dado[linha][3] == 'Contabil'):
-                if(valEx != dado[linha][0] or valCom != dado[linha][1] ):
-                    if(dado[linha][1] != '00' and dado[linha][1] != '13'):
-                        st.error('Arquivo em diretório errado,' + " com exercício: " + valEx + " e competência: " + valCom)
-                        st.sidebar.error('Erro no exercício: ' + dado[linha][0] + ' competênca: ' + dado[linha][1])
+    with st.beta_expander('Exercício: '+ str(exercicio)):
+        st.header('Exercício: '+ str(exercicio))
+        linhas = len(ler.varrerDiretorios())
+        dado = ler.varrerDiretorios()
+        for linha in range(linhas):
             if (dado[linha][0] == str(exercicio)):
-                st.text(str(dado[linha][2]).replace(',','\n'))
-                st.success(str(len(dado[linha][2])) + ' arquivo(s). ')
+                st.subheader('Competência: ' + dado[linha][1] + ' Pasta: ' + dado[linha][3])
+                valEx, valCom = Arquivo.validarArquivoTexto(dado[linha][0], dado[linha][1])
+                if(dado[linha][3] == 'Contabil'):
+                    if(valEx != dado[linha][0] or valCom != dado[linha][1] ):
+                        if(dado[linha][1] != '00' and dado[linha][1] != '13'):
+                            st.error('Arquivo em diretório errado,' + " com exercício: " + valEx + " e competência: " + valCom)
+                            st.sidebar.error('Erro no exercício: ' + dado[linha][0] + ' competênca: ' + dado[linha][1])
+                if (dado[linha][0] == str(exercicio)):
+                    st.text(str(dado[linha][2]).replace(',','\n'))
+                    st.success(str(len(dado[linha][2])) + ' arquivo(s). ')
