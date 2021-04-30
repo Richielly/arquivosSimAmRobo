@@ -99,16 +99,13 @@ class Consulta:
         #senha = "almir1"
         #usuario = "00029032962"  #Guamiranga
         #senha = "M339cont"
-        #usuario = "89997425987" #Municipio Capitão Leonidas / Municipio Santa Lucia
-        #senha = "461928"
+        usuario = "89997425987" #Municipio Capitão Leonidas / Municipio Santa Lucia
+        senha = "461928"
 
-        usuario = "70954755987" #Terra Rica Samae
-        senha = "5x36d48y"
+        #usuario = "70954755987" #Terra Rica Samae
+        #senha = "5x36d48y"
 
-        #exercicios = [2013,2014,2015,2016,2017,2018,2019,2020,2021]
-
-        exercicios = [2021]
-
+        exercicios = [2013,2014,2015,2016,2017,2018,2019,2020,2021]
 
         competencias = ['Abertura de Exercício','Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto',
                    'Setembro','Outubro','Novembro','Dezembro','Encerramento de Exercício']

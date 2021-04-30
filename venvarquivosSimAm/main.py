@@ -24,7 +24,7 @@ if st.sidebar.checkbox("Graficos"):
         label = dado[0]
         quantidade = len(dado[1])
 
-Consulta.start()
+#Consulta.start()
 
 #if __name__ == '__main__':
  #   Main.principal()
