@@ -105,6 +105,7 @@ if st.sidebar.checkbox('Config'):
                 parser.write(configfile)
 
 if st.sidebar.checkbox('Acesso Tce'):
+    
     import configparser
     secoes = []
     parser = configparser.ConfigParser()
