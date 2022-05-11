@@ -4,6 +4,9 @@ from pyunpack import Archive
 import os
 import sys
 import time
+import shutil
+from arquivo import Arquivo as arq
+
 
         #Extrair todos os arquivos mas sem as devidas pastas arquivo final txt
             #os.system('7z e 00.zip -oC:\\caminho de destino')
@@ -49,7 +52,16 @@ class Pacote:
                 #Criando a pasta para descompactar os arquivos fazendo um Split do nome de arquivo encontrado e sem a extensão.
                 #os.system("7z x " + str(competencia) +' -o'+ diretorio+str(exercicio)+'\\'+str(competencia.split('.')[0]+ '.zip'))
 
+                print(diretorio + str(exercicio) + '\\' + str(competencia.split('.')[0]))
+
                 os.system("7z x " + str(diretorio + str(exercicio)) + ' -o' + diretorio + str(exercicio) + '\\' + str(competencia.split('.')[0]))
+
+                if os.path.exists("C:\\Users\\richielly.carvalho\Downloads\\"+"SimAmCMSantaMariana\\" + str(exercicio)):
+                    shutil.move(diretorio + str(exercicio) + '\\' + str(competencia.split('.')[0]), "C:\\Users\\richielly.carvalho\Downloads\\"+"SimAmCMSantaMariana\\" + str(exercicio))
+                else:
+                    os.makedirs( "C:\\Users\\richielly.carvalho\Downloads\\" + "SimAmCMSantaMariana\\" + str(exercicio))
+                    shutil.move(diretorio + str(exercicio) + '\\' + str(competencia.split('.')[0]), "C:\\Users\\richielly.carvalho\Downloads\\" + "SimAmCMSantaMariana\\" + str(exercicio))
+                    return False
 
     def lerArquivosCompactados():
 
@@ -67,3 +79,4 @@ class Pacote:
             print(str(data).split('\\r\\n'))
             # extraindo todos os arquivos
             print('Extracting all the files now...')
+

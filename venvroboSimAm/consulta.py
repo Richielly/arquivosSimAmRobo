@@ -7,10 +7,12 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.remote.webelement import WebElement
 from datetime import datetime
 import time
-
 from pacote import Pacote
-
 from arquivo import Arquivo
+
+import configparser
+cfg = configparser.ConfigParser()
+cfg.read('cfg.ini')
 
 browser = webdriver.Chrome(executable_path=r"C:\Users\richielly.carvalho\PycharmProjects\arquivosSimAmRobo\venvroboSimAm\chromedriver.exe")
 
@@ -70,21 +72,21 @@ class Consulta:
 
     def liberarDownload(exercicio, competencia):
         global browser
-        time.sleep(10)
+        time.sleep(7)
         browser.find_element_by_id('ContentPlaceHolder1_btnAtualizarPagina').click()
         try:
             browser.find_element_by_id('ContentPlaceHolder1_btnDownload').click()
-            time.sleep(5)
+            time.sleep(3)
             Arquivo.renomear_arquivo(competencia,exercicio)
-            Pacote.decompactarCmd()
-            time.sleep(5)
-            Arquivo.deletarZip()
+            # Pacote.decompactarCmd()
+            # time.sleep(5)
+            # Arquivo.deletarZip()
         except: return True
         return False
 
     def download(exercicio, competencia):
         while(Consulta.liberarDownload(exercicio, competencia)):
-            time.sleep(7)
+            time.sleep(6)
         Arquivo.registrar_log("Download (" +competencia+"/"+str(exercicio)+ ") iniciado em: "+datetime.now().strftime('%d/%m/%Y %H:%M'))
         print("Download (" +competencia+"/"+str(exercicio)+ ") iniciado em: "+datetime.now().strftime('%d/%m/%Y %H:%M'))
 
@@ -106,25 +108,24 @@ class Consulta:
         # usuario = "02929011947"  # Castelo Branco
         # senha = "cristian0556"
 
-        usuario = "08651173903"  # Samae Japurá
-        senha = "Feer60485"
+        #usuario = "08651173903"  # Samae Japurá
+        #senha = "Feer60485"
 
         # usuario = "70954755987" #Terra Rica Samae
         # senha = "5x36d48y"
 
-        exercicios = [2013,2014,2015,2016,2017,2018,2019,2020,2021,2022]
+        exercicios = [2022]
+        # exercicios = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
 
         competencias = ['Abertura de Exercício','Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto',
-                   'Setembro','Outubro','Novembro','Dezembro','Encerramento de Exercício']
+                    'Setembro','Outubro','Novembro','Dezembro','Encerramento de Exercício']
 
-        logado = Consulta.loginSimAm(usuario,senha)
-        time.sleep(20)
+        logado = Consulta.loginSimAm(cfg['Camara_Santa_Mariana']['usuario'],cfg['Camara_Santa_Mariana']['senha'])
+        time.sleep(7)
 
         for exercicio in exercicios:
             for competencia in competencias:
                 Consulta.rota(exercicio,competencia)
-
-        #Pacote.decompactarCmd()
 
         Arquivo.registrar_log(" ########## Processo finalizado em: " + datetime.now().strftime('%d/%m/%Y %H:%M' + " ##########"))
         Consulta.finalizarNavegador()

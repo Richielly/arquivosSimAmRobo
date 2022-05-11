@@ -3,6 +3,7 @@ import shutil
 import streamlit as st
 from arquivo import Arquivo
 # from pacote import Pacote
+import configparser
 
 # if not os.path.exists(os.getcwd() + '/RepositorioArquivosSimAm'):
 #     os.mkdir('RepositorioArquivosSimAm')
@@ -76,16 +77,16 @@ if st.sidebar.checkbox("Analise Geral"):
                         st.success(str(len(dado[linha][2])) + ' arquivo(s). ')
 
 if st.sidebar.checkbox('Config'):
-    import configparser
+
     secoes = []
     parser = configparser.ConfigParser()
     parser.read('cfg.ini')
     for sect in parser.sections():
         secoes.append(sect)
+    if secoes != None:
+        secao = st.selectbox('Seções: ', secoes)
 
-    secao = st.selectbox('Seções: ', secoes)
-
-    for k, v in parser.items(secao):
+        for k, v in parser.items(secao):
             st.text_input(k,'{}'.format(v))
 
     if st.checkbox('Novo'):
